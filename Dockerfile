@@ -16,6 +16,7 @@ ARG WORKDIR
 
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
+RUN npm install -g npm@latest
 
 # Set working directory for all build stages
 WORKDIR ${WORKDIR}
@@ -26,6 +27,7 @@ FROM base AS dev
 # Download additional development dependencies before starting in development mode.
 RUN --mount=type=bind,source=package.json,target=package.json \
     --mount=type=bind,source=package-lock.json,target=package-lock.json \
+    --mount=type=bind,source=prisma,target=prisma \
     --mount=type=cache,target=/root/.npm \
     npm ci
 
@@ -51,6 +53,7 @@ FROM base AS build
 # into this layer.
 RUN --mount=type=bind,source=package.json,target=package.json \
     --mount=type=bind,source=package-lock.json,target=package-lock.json \
+    --mount=type=bind,source=prisma,target=prisma \
     --mount=type=cache,target=/root/.npm \
     npm ci --omit=dev
 

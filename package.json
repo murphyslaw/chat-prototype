@@ -18,10 +18,14 @@
     "docker:build:dev": "docker compose --file compose.dev.yml build --no-cache",
     "docker:build:prod": "docker compose --file compose.prod.yml build --no-cache",
     "docker:dev": "docker compose --file compose.dev.yml up --renew-anon-volumes",
-    "docker:prod": "docker compose --file compose.prod.yml up"
+    "docker:prod": "docker compose --file compose.prod.yml up",
+    "db:migrate:dev": "dotenv -e .env.development -- npx prisma migrate dev",
+    "db:seed": "dotenv -e .env.development -- npx prisma db seed",
+    "db:reset": "dotenv -e .env.development -- npx prisma migrate reset"
   },
   "dependencies": {
     "@types/node": "20.2.1",
+    "@prisma/client": "^4.14.1",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
     "eslint": "8.41.0",
@@ -32,6 +36,12 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "prettier": "^2.8.8"
+    "dotenv-cli": "^7.2.1",
+    "prettier": "^2.8.8",
+    "prisma": "^4.14.1",
+    "ts-node": "^10.9.1"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   }
 }
