@@ -1,7 +1,15 @@
 {
+  "private": true,
   "name": "chat-prototype",
   "version": "0.1.0",
-  "private": true,
+  "description": "Chat prototype",
+  "main": "app/page.tsx",
+  "author": "Falk Köppe",
+  "license": "MIT",
+  "engines": {
+    "node": "^18.16.0",
+    "npm": "^9.5.1"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
