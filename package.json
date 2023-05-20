@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "docker:build:dev": "docker compose --file compose.dev.yml build --no-cache",
+    "docker:build:prod": "docker compose --file compose.prod.yml build --no-cache",
+    "docker:dev": "docker compose --file compose.dev.yml up --renew-anon-volumes",
+    "docker:prod": "docker compose --file compose.prod.yml up"
   },
   "dependencies": {
     "@types/node": "20.2.1",
