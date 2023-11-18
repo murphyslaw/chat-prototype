@@ -1,6 +1,7 @@
 import "./globals.css";
+import type { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Chat Prototype",
   description: "Nextjs, Sqlite, socket.io prototype",
 };
